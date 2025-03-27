@@ -5,6 +5,10 @@ VisualStudioVersion = 17.13.35919.96 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MessagingApp", "MessagingApp\MessagingApp.vcxproj", "{0891BDEA-7A19-40C6-A490-FF2C93C34982}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MessagingServer", "MessagingServer\MessagingServer.vcxproj", "{ED42C383-7BBD-482C-A18F-9507FCFBA822}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MessagingClient", "MessagingClient\MessagingClient.vcxproj", "{6B859DED-24C7-44F6-BCC3-739FF34D8CE4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +25,22 @@ Global
 		{0891BDEA-7A19-40C6-A490-FF2C93C34982}.Release|x64.Build.0 = Release|x64
 		{0891BDEA-7A19-40C6-A490-FF2C93C34982}.Release|x86.ActiveCfg = Release|Win32
 		{0891BDEA-7A19-40C6-A490-FF2C93C34982}.Release|x86.Build.0 = Release|Win32
+		{ED42C383-7BBD-482C-A18F-9507FCFBA822}.Debug|x64.ActiveCfg = Debug|x64
+		{ED42C383-7BBD-482C-A18F-9507FCFBA822}.Debug|x64.Build.0 = Debug|x64
+		{ED42C383-7BBD-482C-A18F-9507FCFBA822}.Debug|x86.ActiveCfg = Debug|Win32
+		{ED42C383-7BBD-482C-A18F-9507FCFBA822}.Debug|x86.Build.0 = Debug|Win32
+		{ED42C383-7BBD-482C-A18F-9507FCFBA822}.Release|x64.ActiveCfg = Release|x64
+		{ED42C383-7BBD-482C-A18F-9507FCFBA822}.Release|x64.Build.0 = Release|x64
+		{ED42C383-7BBD-482C-A18F-9507FCFBA822}.Release|x86.ActiveCfg = Release|Win32
+		{ED42C383-7BBD-482C-A18F-9507FCFBA822}.Release|x86.Build.0 = Release|Win32
+		{6B859DED-24C7-44F6-BCC3-739FF34D8CE4}.Debug|x64.ActiveCfg = Debug|x64
+		{6B859DED-24C7-44F6-BCC3-739FF34D8CE4}.Debug|x64.Build.0 = Debug|x64
+		{6B859DED-24C7-44F6-BCC3-739FF34D8CE4}.Debug|x86.ActiveCfg = Debug|Win32
+		{6B859DED-24C7-44F6-BCC3-739FF34D8CE4}.Debug|x86.Build.0 = Debug|Win32
+		{6B859DED-24C7-44F6-BCC3-739FF34D8CE4}.Release|x64.ActiveCfg = Release|x64
+		{6B859DED-24C7-44F6-BCC3-739FF34D8CE4}.Release|x64.Build.0 = Release|x64
+		{6B859DED-24C7-44F6-BCC3-739FF34D8CE4}.Release|x86.ActiveCfg = Release|Win32
+		{6B859DED-24C7-44F6-BCC3-739FF34D8CE4}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
