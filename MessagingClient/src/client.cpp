@@ -57,3 +57,18 @@ void Client::connectToServer()
 }
 
 
+void Client::sendMessage()
+{
+    std::string message;
+
+    while (true) {
+        std::cout << "Type..: ";
+        std::getline(std::cin, message);
+
+        if (send(clientSocket, message.c_str(), message.size(), 0) == SOCKET_ERROR) {
+            std::cerr << "Failed to send message: " << WSAGetLastError() << std::endl;
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+            closesocket(clientSocket);
+        }
+    }
+}
