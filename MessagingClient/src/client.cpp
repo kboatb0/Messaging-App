@@ -72,3 +72,25 @@ void Client::sendMessage()
         }
     }
 }
+
+
+void Client::receiveMessage()
+{
+    char buffer[4096];
+
+    while (true) {
+        memset(buffer, 0, sizeof(buffer));
+
+        int bytesReceived = recv(clientSocket, buffer, sizeof(buffer), 0);
+
+        if (bytesReceived <= 0) {
+            std::cerr << "Client disconnected from server: " << WSAGetLastError() << std::endl;
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+            closesocket(clientSocket);
+        }
+        else {
+            std::string message(buffer, bytesReceived);
+            std::cout << message << std::endl;
+        }
+    }
+}
