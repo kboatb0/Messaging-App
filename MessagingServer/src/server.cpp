@@ -11,6 +11,7 @@ Server::~Server()
 	closesocket(clientSocket);
 }
 
+
 void Server::startServer()
 {
 	serverSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
@@ -45,4 +46,39 @@ void Server::startServer()
 	}
 
 	acceptClients();
+}
+
+
+void Server::handleClients(SOCKET sockclient)
+{
+	char buffer[4096];
+
+	while (true) {
+		memset(buffer, 0, sizeof(buffer));
+
+		int bytesReceived = recv(sockclient, buffer, strlen(buffer), 0);
+
+		if (bytesReceived <= 0) {
+			std::cerr << "Disconnected\n";
+			break;
+		}
+		else {
+			std::cout << "Received\n";
+			std::cout << buffer << std::endl;
+		}
+
+		std::lock_guard<std::mutex> lock(clientMutex);
+		for (SOCKET sock : clientsContainer) {
+			//if (sock != clientSocket) {
+			send(sockclient, buffer, strlen(buffer), 0);
+			//}
+		}
+	}
+
+	{
+		std::lock_guard<std::mutex> lock(clientMutex);
+		clientsContainer.erase(std::remove(clientsContainer.begin(), clientsContainer.end(), clientSocket), clientsContainer.end());
+	}
+
+	closesocket(clientSocket);
 }
