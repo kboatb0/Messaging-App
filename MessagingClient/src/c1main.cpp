@@ -18,4 +18,6 @@ int main()
     std::thread receiveThread([&client]() {
         client.receiveMessage();
         });
+
+    WSACleanup();
 }
