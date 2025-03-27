@@ -82,3 +82,22 @@ void Server::handleClients(SOCKET sockclient)
 
 	closesocket(clientSocket);
 }
+
+
+void Server::acceptClients()
+{
+	while (true) {
+		SOCKET newClientSocket = accept(serverSocket, nullptr, nullptr);
+		if (newClientSocket == INVALID_SOCKET) {
+			std::cerr << "Failed to accept: " << WSAGetLastError() << std::endl;
+		}
+
+		{
+			std::lock_guard<std::mutex> lock(clientMutex);
+			clientsContainer.push_back(newClientSocket);
+		}
+
+		std::thread handleThread(&Server::handleClients, this, newClientSocket);
+		handleThread.detach();
+	}
+}
