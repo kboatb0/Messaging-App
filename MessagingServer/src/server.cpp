@@ -5,6 +5,7 @@ Server::Server()
 	startServer();
 }
 
+
 Server::~Server()
 {
 	closesocket(serverSocket);
