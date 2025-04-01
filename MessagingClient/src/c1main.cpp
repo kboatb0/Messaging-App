@@ -19,5 +19,8 @@ int main()
         client.receiveMessage();
         });
 
+    sendThread.join();
+    receiveThread.join();
+
     WSACleanup();
 }
