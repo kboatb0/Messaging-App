@@ -39,7 +39,20 @@ void Client::connectToServer()
             break;
         }
     }
+
+    std::string username;
+    std::cout << "Enter username: ";
+    std::cin >> username;
+
+    while (send(clientSocket, username.c_str(), username.length(), 0) == SOCKET_ERROR) {
+        std::cerr << "Failed to send username: " << WSAGetLastError() << std::endl;
+        closesocket(clientSocket);
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::cout << "Reconnecting...\n";
+        connectToServer();
+    }
 }
+
 
 
 void Client::sendMessage()

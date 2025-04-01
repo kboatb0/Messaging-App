@@ -57,6 +57,24 @@ void Server::startServer()
 void Server::handleClients(SOCKET sockClient)
 {
     char buffer[4096];
+    memset(buffer, 0, sizeof(buffer));
+
+    int bytesReceived = recv(sockClient, buffer, sizeof(buffer) - 1, 0);
+
+    if (bytesReceived <= 0) {
+        std::cerr << "Failed to read username\n";
+        return;
+    }
+
+    std::string username(buffer, bytesReceived);
+    std::mutex userMutex;
+
+    {
+        std::lock_guard<std::mutex> lock(userMutex);
+        socketToUserName[sockClient] = username;
+    }
+
+    std::cout << socketToUserName[sockClient] << " connected\n";
 
     while (true) {
         memset(buffer, 0, sizeof(buffer));
@@ -73,11 +91,14 @@ void Server::handleClients(SOCKET sockClient)
             std::cout << buffer << std::endl;
         }
 
+        std::string formattedMsg = socketToUserName[sockClient] + ": " + buffer + '\n';
+
         // Broadcast the received message to all connected clients
         std::lock_guard<std::mutex> lock(clientMutex);
         for (SOCKET sock : clientsContainer) {
-            std::this_thread::sleep_for(std::chrono::seconds(5));
-            send(sock, buffer, strlen(buffer), 0);
+            if (sock != sockClient) {
+                send(sock, formattedMsg.c_str(), formattedMsg.length(), 0);
+            }
         }
     }
 
