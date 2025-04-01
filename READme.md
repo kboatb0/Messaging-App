@@ -1,4 +1,4 @@
-# Chat Application
+# Messaging/Chat Application
 This is a simple chat application built in C++ using sockets. It allows multiple clients to connect to a server and send/receive messages in real-time.
 
 ## Features
